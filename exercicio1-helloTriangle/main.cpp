@@ -31,7 +31,7 @@ int setupGeometry();
 const GLuint WIDTH = 800, HEIGHT = 600;
 
 // C�digo fonte do Vertex Shader (em GLSL): ainda hardcoded
-const GLchar* vertexShaderSource = "#version 330\n"
+const GLchar* vertexShaderSource = "#version 410\n"
 "layout (location = 0) in vec3 position;\n"
 "void main()\n"
 "{\n"
@@ -40,7 +40,7 @@ const GLchar* vertexShaderSource = "#version 330\n"
 "}\0";
 
 //C�difo fonte do Fragment Shader (em GLSL): ainda hardcoded
-const GLchar* fragmentShaderSource = "#version 330\n"
+const GLchar* fragmentShaderSource = "#version 410\n"
 "uniform vec4 inputColor;\n"
 "out vec4 color;\n"
 "void main()\n"
@@ -58,8 +58,8 @@ int main()
 	//Voc� deve adaptar para a vers�o do OpenGL suportada por sua placa
 	//Sugest�o: comente essas linhas de c�digo para desobrir a vers�o e
 	//depois atualize (por exemplo: 4.5 com 4 e 5)
- 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+ 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	//Essencial para computadores da Apple
