@@ -9,7 +9,7 @@ Respositório para a entrega dos exercícios da cadeira de Processamento Gráfic
 #### Ambiente de Desenvolvimento
 - macOS v13.2.1
 - GLFW v3.3.8
-- OpenGL v3.3
+- OpenGL v4.1
 
 ---------------------------------------------------
 
