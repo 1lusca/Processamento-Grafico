@@ -1,0 +1,13 @@
+1. OpenGL Shading Language (GLSL) é uma linguagem de sombreamento de alto nível com uma sintaxe baseada em C. Os dois tipos obrigatórios de shaders para o OpenGL 4 são o Vertex Shader, que descreve como tratar um vértice, e o Fragment Shader, que descreve como tratar uma área.
+
+2. As primitivas gráficas são os elementos mais simples que podem ser criados.
+- GL_POINTS: pontos
+- GL_LINES: linha a cada 2 pontos do array
+- GL_LINE_STRIP: linha entre todos os pontos do array do primeiro ao ultimo
+- GL_LINE_LOOP: linha entre todos os pontos do array
+- GL_TRIANGULOS: triangulo a cada 3 pontos do array
+- GL_TRIANGLE_STRIP: triangulos grudados
+- GL_TRIANGLE_FAN: triangulo a cada 2 pontos do array sendo que o terceiro ponto é sempre o primeiro do array
+
+3. Vertex Buffer Object (VBO) é um buffer que armazena um array de dados (posição, vetores, cores etc) diretamente na memória da GPU, permitindo uma renderização mais rápida. Vertex Array Object (VAO) faz a ligação dos atributos de um vértice, ele define que VBO vai ser usado e a localização e o formato desses dados.
+

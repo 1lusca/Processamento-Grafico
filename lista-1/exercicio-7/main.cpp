@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <assert.h>
+#include <cmath>
 
 using namespace std;
 
@@ -29,6 +30,9 @@ int setupGeometry();
 
 // Dimens�es da janela (pode ser alterado em tempo de execu��o)
 const GLuint WIDTH = 800, HEIGHT = 600;
+
+const int nPoints = 1000 + 1 + 1;
+const float pi = 3.14159;
 
 // C�digo fonte do Vertex Shader (em GLSL): ainda hardcoded
 const GLchar* vertexShaderSource = "#version 410\n"
@@ -68,7 +72,7 @@ int main()
 	#endif
 
 	// Cria��o da janela GLFW
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Olá Triângulo! - Lucas Schneider", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Lista 1, Exercício 7 - Lucas Schneider", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
 	// Fazendo o registro da fun��o de callback para a janela GLFW
@@ -119,29 +123,23 @@ int main()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //cor de fundo
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glLineWidth(10);
-		glPointSize(20);
+		glLineWidth(2);
+		glPointSize(10);
 
 		glBindVertexArray(VAO); //Conectando ao buffer de geometria
 
-		// Chamada de desenho - drawcall
-		// Poligono Preenchido - GL_TRIANGLES
 
-		glUniform4f(colorLoc, 0.0f, 0.0f, 1.0f, 1.0f); //enviando cor para vari�vel uniform inputColor
 
-		glDrawArrays(GL_TRIANGLES, 0, 6); //preenche a forma
 
-		// Chamada de desenho - drawcall
-		// CONTORNO - GL_LINE_LOOP
-		// PONTOS - GL_POINTS
 
-		glUniform4f(colorLoc, 1.0f, 0.0f, 1.0f, 1.0f); //enviando cor para vari�vel uniform inputColor
+		glUniform4f(colorLoc, 0.8f, 0.0f, 0.0f, 1.0f);
+		glDrawArrays(GL_LINE_STRIP, 1, nPoints-1);
+
+
+
+
+
 		
-		glDrawArrays(GL_LINE_LOOP, 0, 6); //desenha a linha (contorno)
-
-		glDrawArrays(GL_POINTS, 0, 6); //desenha os pontos nos vertices
-
-
 		glBindVertexArray(0); //Desconectando o buffer de geometria
 
 		// Troca os buffers da tela
@@ -218,27 +216,39 @@ int setupShader()
 // A fun��o retorna o identificador do VAO
 int setupGeometry()
 {
-	// Aqui setamos as coordenadas x, y e z do tri�ngulo e as armazenamos de forma
-	// sequencial, j� visando mandar para o VBO (Vertex Buffer Objects)
-	// Cada atributo do v�rtice (coordenada, cores, coordenadas de textura, normal, etc)
-	// Pode ser arazenado em um VBO �nico ou em VBOs separados
-	GLfloat vertices[] = {
-		// -0.5, -0.5, 0.0,
-		//  0.5, -0.5, 0.0,
-		//  0.0, 0.5, 0.0,
-
-		-0.5, 0.5, 0.0,
-		0.5, 0.5, 0.0,
-		0.0, 0.0, 0.0,
-
-		0.0, 0.0, 0.0,
-		-0.5, -0.5, 0.0,
-		0.5, -0.5, 0.0,
 	
-		 //outro triangulo vai aqui
 
 
-	};
+
+	GLfloat* vertices;
+
+	vertices = new GLfloat[nPoints * 3];
+
+	float angle = 0.0;
+	float deltaAngle = 6 * pi / (float)(nPoints - 2);
+	float radius = 0.0;
+	float radiusIncrement = 0.5 / (float)(nPoints - 2);
+	
+	// Adicionar o centro
+	vertices[0] = 0.0; // x
+	vertices[1] = 0.0; // y
+	vertices[2] = 0.0; // z
+
+	for (int i = 3; i < nPoints * 3; i += 3)
+	{
+		vertices[i] = radius * cos(angle);
+		vertices[i+1] = radius * sin(angle);
+		vertices[i+2] = 0.0;
+
+		angle += deltaAngle;
+		radius += radiusIncrement;
+	}
+
+
+
+
+
+
 
 	GLuint VBO, VAO;
 
@@ -247,7 +257,7 @@ int setupGeometry()
 	//Faz a conex�o (vincula) do buffer como um buffer de array
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//Envia os dados do array de floats para o buffer da OpenGl
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, nPoints * 3 * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
 
 	//Gera��o do identificador do VAO (Vertex Array Object)
 	glGenVertexArrays(1, &VAO);
