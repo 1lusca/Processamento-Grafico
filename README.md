@@ -15,8 +15,8 @@ Respositório para a entrega dos exercícios da cadeira de Processamento Gráfic
 
 #### Exercícios Entregues
 
-- [Hello Triangle](https://github.com/1lusca/Processamento-Grafico/tree/main/exercicio1-helloTriangle)
 - [Lista 1](https://github.com/1lusca/Processamento-Grafico/tree/main/lista-1)
+- [Lista 2](https://github.com/1lusca/Processamento-Grafico/tree/main/lista-2)
 
 
 
