@@ -1,0 +1,1 @@
+Útil para definir as extermidades mínimas e máximas para os eixos x e y, por exemplo, foi definido pois é um padrão utilizado, começar a contar do canto superior esquerdo.
