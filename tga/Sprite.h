@@ -39,6 +39,8 @@ protected:
 	int iFrame, iAnimation;
 	float dx, dy;
 	glm::vec2 speed;
+	float time;
+	int frameTime;
 
 
 	Shader* shader;

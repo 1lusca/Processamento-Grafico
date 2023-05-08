@@ -8,11 +8,14 @@ void Sprite::initialize(int texID, int imgWidth, int imgHeight, int nAnimations,
 	this->nAnimations = nAnimations;
 	this->nFrames = nFrames;
 
-	speed.x = 5.0;
-	speed.y = 5.0;
+	speed.x = 8.0;
+	speed.y = 8.0;
 
 	dx = 1.0 / float(nFrames);
 	dy = 1.0 / float(nAnimations);
+
+	time = 0.0f;
+	frameTime = 4;
 
 	GLfloat vertices[] = {
 		//x   y     z    r    g    b     s     t
@@ -90,8 +93,14 @@ void Sprite::update()
 	int modelLoc = glGetUniformLocation(shader->ID, "model");
 	glUniformMatrix4fv(modelLoc, 1, false, glm::value_ptr(model));
 
-	iFrame = (iFrame + 1) % nFrames;
+	//iFrame = (iFrame + 1) % nFrames;
+	time += 1.0f;
+	iFrame = int(time / frameTime) % nFrames;
 
+
+	// float offsetx = iFrame * dx;
+	// float offsety = iAnimation * dy;
+	// shader->setVec2("offsets", offsetx, offsety);
 	float offsetx = iFrame * dx;
 	float offsety = iAnimation * dy;
 	shader->setVec2("offsets", offsetx, offsety);

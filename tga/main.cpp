@@ -29,10 +29,10 @@ using namespace std;
 
 #include "Timer.h"
 
-// Prot�tipo da fun��o de callback de teclado
+// Callback teclado
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
-// ProtÛtipos das funÁıes
+// Funcoes
 int setupGeometry();
 int setupSprite();
 
@@ -52,6 +52,8 @@ int main()
 	// Inicialização da GLFW
 	glfwInit();
 
+	
+
 	//Muita atenção aqui: alguns ambientes não aceitam essas configurações
 	//Você deve adaptar para a versão do OpenGL suportada por sua placa
 	//Sugestão: comente essas linhas de código para desobrir a versão e
@@ -66,7 +68,7 @@ int main()
 	#endif
 
 	// CriaÁ„o da janela GLFW
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Ola Triangulo Com Textura!", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "TGA - Lucas Schneider", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
 	// Fazendo o registro da funÁ„o de callback para a janela GLFW
@@ -93,8 +95,8 @@ int main()
 	int bgwidth, bgheight;
 	int charwidth, charheight;
 
-	GLuint texID = generateTexture("textures/bg-ocean.png", bgwidth, bgheight);
-	GLuint texID2 = generateTexture("textures/Spritesheets/walk1.png", charwidth, charheight);
+	GLuint texID = generateTexture("textures/bg/bg-ocean.png", bgwidth, bgheight);
+	GLuint texID2 = generateTexture("textures/sprite-sheets/octopus-walk.png", charwidth, charheight);
 
 	character.initialize(texID2, charwidth, charheight, 1, 6);
 	character.setShader(&shader);
@@ -369,8 +371,6 @@ bool testCollision(Sprite spr1, Sprite spr2)
 	glm::vec2 min1, min2, max1, max2;
 	spr1.getAABB(min1, max1);
 	spr2.getAABB(min2, max2);
-
-	//AQUI O IFZ�O DO TESTE SE UM RETANGULO INTERCEPTA O OUTRO
 
 	return false;
 }
