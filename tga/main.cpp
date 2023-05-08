@@ -43,6 +43,9 @@ const GLuint WIDTH = 800, HEIGHT = 600;
 // Personagem
 Sprite character;
 
+// Obstaculo
+Sprite obstaculo;
+
 int main()
 {	
 
@@ -81,12 +84,19 @@ int main()
 	// Carrega as texturas
 	GLuint texID = generateTexture("textures/bg/bg-ocean.png", bgwidth, bgheight);
 	GLuint texID2 = generateTexture("textures/sprite-sheets/octopus-walk.png", charwidth, charheight);
+	GLuint texID3 = generateTexture("textures/sprite-sheets/shark-walk.png", charwidth, charheight);
 
 	// Initialize sprite do personagem 
 	character.initialize(texID2, charwidth, charheight, 1, 6);
 	character.setShader(&shader);
 	character.setPosition(glm::vec3(200, 210, 0));
 	character.setScale(glm::vec3(charwidth, charheight, 1));
+
+	// Initialize sprite do obstaculo
+	obstaculo.initialize(texID3, charwidth, charheight, 1, 4);
+	obstaculo.setShader(&shader);
+	obstaculo.setPosition(glm::vec3(400, 410, 0));
+	obstaculo.setScale(glm::vec3(charwidth, charheight, 1));
 
 	// Initialize sprite do background
 	Sprite background;
@@ -109,7 +119,7 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_ALWAYS);
 
-	// Transparencia
+	// Transparencia na texture do personagem
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -138,6 +148,9 @@ int main()
 		character.update();
 		character.draw();
 
+		obstaculo.update();
+		obstaculo.draw();
+
 		glBindVertexArray(0);
 
 		// Troca os buffers da tela
@@ -151,28 +164,38 @@ int main()
 }
 
 // Callback teclado
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
-{
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, GL_TRUE);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode) {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, GL_TRUE);
 
-	if (key == GLFW_KEY_D || key == GLFW_KEY_RIGHT)
-	{
-		character.moveRight();
-	}
-	if (key == GLFW_KEY_A || key == GLFW_KEY_LEFT)
-	{
-		character.moveLeft();
-	}
-	if (key == GLFW_KEY_W || key == GLFW_KEY_UP)
-	{
-		character.moveUp();
-	}
-	if (key == GLFW_KEY_S || key == GLFW_KEY_DOWN)
-	{
-		character.moveDown();
-	}
+    // Verifica se há colisão entre o personagem e o obstáculo
+    if (testCollision(character, obstaculo)) {
+        // Se houver colisão, não permite que o personagem se mova naquela direção
+        if (key == GLFW_KEY_D || key == GLFW_KEY_RIGHT)
+            character.moveLeft();
+			character.moveDown();
+        if (key == GLFW_KEY_A || key == GLFW_KEY_LEFT)
+            character.moveRight();
+			character.moveDown();
+        if (key == GLFW_KEY_W || key == GLFW_KEY_UP)
+            character.moveDown();
+			 character.moveLeft();
+        if (key == GLFW_KEY_S || key == GLFW_KEY_DOWN)
+            character.moveUp();
+			 character.moveLeft();
+    } else {
+        // Se não houver colisão, permite que o personagem se mova normalmente
+        if (key == GLFW_KEY_D || key == GLFW_KEY_RIGHT)
+            character.moveRight();
+        if (key == GLFW_KEY_A || key == GLFW_KEY_LEFT)
+            character.moveLeft();
+        if (key == GLFW_KEY_W || key == GLFW_KEY_UP)
+            character.moveUp();
+        if (key == GLFW_KEY_S || key == GLFW_KEY_DOWN)
+            character.moveDown();
+    }
 }
+
 
 // Config geometry
 int setupGeometry() {
@@ -300,6 +323,12 @@ bool testCollision(Sprite spr1, Sprite spr2) {
 	spr1.getAABB(min1, max1);
 	spr2.getAABB(min2, max2);
 
-	return false;
+	// Verifica se há interseção nas coordenadas X
+    bool overlapX = max1.x >= min2.x && max2.x >= min1.x;
+    // Verifica se há interseção nas coordenadas Y
+    bool overlapY = max1.y >= min2.y && max2.y >= min1.y;
+
+    // Se houver interseção nas coordenadas X e Y, os sprites colidiram
+    return overlapX && overlapY;
 }
 

@@ -14,7 +14,7 @@ void Sprite::initialize(int texID, int imgWidth, int imgHeight, int nAnimations,
 	dy = 1.0 / float(nAnimations);
 
 	time = 0.0f;
-	frameTime = 4;
+	frameTime = 8;
 
 	GLfloat vertices[] = {
 		//x		y     	z    	r    	g    	b     	s     	t
