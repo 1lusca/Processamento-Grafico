@@ -90,20 +90,20 @@ int main()
 	character.initialize(texID2, charwidth, charheight, 1, 6);
 	character.setShader(&shader);
 	character.setPosition(glm::vec3(200, 210, 0));
-	character.setScale(glm::vec3(charwidth, charheight, 1));
+	character.setScale(glm::vec3(charwidth*2, charheight*2, 1));
 
 	// Initialize sprite do obstaculo
 	obstaculo.initialize(texID3, charwidth, charheight, 1, 4);
 	obstaculo.setShader(&shader);
 	obstaculo.setPosition(glm::vec3(400, 410, 0));
-	obstaculo.setScale(glm::vec3(charwidth, charheight, 1));
+	obstaculo.setScale(glm::vec3(charwidth*2, charheight*2, 1));
 
 	// Initialize sprite do background
 	Sprite background;
 	background.initialize(texID, bgwidth, bgheight);
 	background.setShader(&shader);
 	background.setPosition(glm::vec3(400, 300, 0));
-	background.setScale(glm::vec3(bgwidth*0.5, bgheight*0.5, 1));
+	background.setScale(glm::vec3(bgwidth*0.56, bgheight*0.56, 1));
 	
 	glUseProgram(shader.ID);
 
@@ -331,4 +331,3 @@ bool testCollision(Sprite spr1, Sprite spr2) {
     // Se houver interseção nas coordenadas X e Y, os sprites colidiram
     return overlapX && overlapY;
 }
-
