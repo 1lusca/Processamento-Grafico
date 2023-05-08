@@ -85,7 +85,7 @@ int main()
 	GLuint texID = generateTexture("textures/bg/bg-ocean.png", bgwidth, bgheight);
 	GLuint texID2 = generateTexture("textures/sprite-sheets/octopus-walk.png", charwidth, charheight);
 	GLuint texID3 = generateTexture("textures/sprite-sheets/shark-walk.png", charwidth, charheight);
-
+	
 	// Initialize sprite do personagem 
 	character.initialize(texID2, charwidth, charheight, 1, 6);
 	character.setShader(&shader);
