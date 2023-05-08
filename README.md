@@ -13,6 +13,12 @@ Respositório para a entrega dos exercícios da cadeira de Processamento Gráfic
 
 ---------------------------------------------------
 
+#### Trabalhos Entregues
+
+- [TGA](https://github.com/1lusca/Processamento-Grafico/tree/main/tga)
+
+---------------------------------------------------
+
 #### Exercícios Entregues
 
 - [Lista 1](https://github.com/1lusca/Processamento-Grafico/tree/main/lista-1)
