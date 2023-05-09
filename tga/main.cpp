@@ -172,17 +172,13 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     if (testCollision(character, obstaculo)) {
         // Se houver colisão, não permite que o personagem se mova naquela direção
         if (key == GLFW_KEY_D || key == GLFW_KEY_RIGHT)
-            character.moveLeft();
-			character.moveDown();
+			obstaculo.setPosition(glm::vec3(2000, 2000, 0));
         if (key == GLFW_KEY_A || key == GLFW_KEY_LEFT)
-            character.moveRight();
-			character.moveDown();
+			obstaculo.setPosition(glm::vec3(2000, 2000, 0));
         if (key == GLFW_KEY_W || key == GLFW_KEY_UP)
-            character.moveDown();
-			 character.moveLeft();
+			obstaculo.setPosition(glm::vec3(2000, 2000, 0));
         if (key == GLFW_KEY_S || key == GLFW_KEY_DOWN)
-            character.moveUp();
-			 character.moveLeft();
+			obstaculo.setPosition(glm::vec3(2000, 2000, 0));
     } else {
         // Se não houver colisão, permite que o personagem se mova normalmente
         if (key == GLFW_KEY_D || key == GLFW_KEY_RIGHT)
