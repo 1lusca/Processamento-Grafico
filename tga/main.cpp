@@ -83,17 +83,17 @@ int main()
 
 	// Carrega as texturas
 	GLuint texID = generateTexture("textures/bg/bg-ocean.png", bgwidth, bgheight);
-	GLuint texID2 = generateTexture("textures/sprite-sheets/octopus-walk.png", charwidth, charheight);
-	GLuint texID3 = generateTexture("textures/sprite-sheets/shark-walk.png", charwidth, charheight);
-	
+	GLuint texID2 = generateTexture("textures/sprite-sheets/shark-walk.png", charwidth, charheight);
+	GLuint texID3 = generateTexture("textures/sprite-sheets/octopus-walk.png", charwidth, charheight);
+
 	// Initialize sprite do personagem 
-	character.initialize(texID2, charwidth, charheight, 1, 6);
+	character.initialize(texID2, charwidth, charheight, 1, 4);
 	character.setShader(&shader);
 	character.setPosition(glm::vec3(200, 210, 0));
 	character.setScale(glm::vec3(charwidth*2, charheight*2, 1));
 
 	// Initialize sprite do obstaculo
-	obstaculo.initialize(texID3, charwidth, charheight, 1, 4);
+	obstaculo.initialize(texID3, charwidth, charheight, 1, 6);
 	obstaculo.setShader(&shader);
 	obstaculo.setPosition(glm::vec3(400, 410, 0));
 	obstaculo.setScale(glm::vec3(charwidth*2, charheight*2, 1));
