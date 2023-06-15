@@ -4,20 +4,21 @@ Respositório para a entrega dos exercícios da cadeira de Processamento Gráfic
 
 #### Nome: Lucas Schneider
 
----------------------------------------------------
+##
 
 #### Ambiente de Desenvolvimento
 - macOS v13.2.1
 - GLFW v3.3.8
 - OpenGL v4.1
 
----------------------------------------------------
+##
 
 #### Trabalhos Entregues
 
 - [TGA](https://github.com/1lusca/Processamento-Grafico/tree/main/tga)
+- [TGB](https://github.com/1lusca/Processamento-Grafico/tree/main/tgb)
 
----------------------------------------------------
+##
 
 #### Exercícios Entregues
 
