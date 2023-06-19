@@ -104,9 +104,9 @@ def canny(img):
 def sobel(img):
   sobelx = cv.Sobel(img, cv.CV_64F, 1, 0, ksize=3)
   sobely = cv.Sobel(img, cv.CV_64F, 0, 1, ksize=3)
-  magnitude = np.sqrt(sobelx**2 + sobely**2) #calcula magnitude das bordas
-  magnitude = cv.normalize(magnitude, None, 0, 255, cv.NORM_MINMAX, cv.CV_8U) #normaliza a magnitude 255
-  return magnitude
+  temp = np.sqrt(sobelx**2 + sobely**2) #calcula magnitude das bordas
+  temp = cv.normalize(temp, None, 0, 255, cv.NORM_MINMAX, cv.CV_8U) #normaliza a magnitude 255
+  return temp
 
 # dilatacao
 # dilata/aumenta o tamanho dos objetos na imagem
