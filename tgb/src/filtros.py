@@ -3,7 +3,8 @@ import cv2 as cv
 
 
 # renderiza um unico canal de cor
-# renderizando o canal B
+# renderizando o canal Blue
+# 0 = blue, 1  = green, red = 2
 def canalUnico(img):
   blue_channel = img[:, :, 0]
   return cv.cvtColor(blue_channel, cv.COLOR_GRAY2BGR)
@@ -86,19 +87,19 @@ def redimensionar(img):
 # percorre pixel a pixel calculando a media dos pixel na area do kernel, e aplica no pixel atual
 # quanto maior a matriz do kernel, maior o desfoque
 def blur(img):
-  kernel = (10, 10)
+  kernel = (14, 14)
   return cv.blur(img, kernel)
 
-# canny
+# deteccao de borda canny
 # deteccao de bordas na imagem
 # limiar minimo: quanto menor o valor, detecta bordas mais fracas
 # limiar maximo: quanto maior o valor, detecta bordas mais fortes
 def canny(img):
-  limiarMinimo = 50
-  limiarMaximo = 150
+  limiarMinimo = 80
+  limiarMaximo = 200
   return cv.Canny(img, limiarMinimo, limiarMaximo)
 
-# sobel
+# deteccao de borda sobel
 # deteccao de bordas na imagem atraves do gradiente de sobel
 # detectando verticalmente a borda da imagem
 # x = 1 & y = 0 - calcula horizontalmente o gradiente
@@ -132,9 +133,3 @@ def winter(img):
   alpha = 1.2  # fator de ajuste de brilho
   beta = -50  # valor de deslocamento de brilho
   return cv.convertScaleAbs(img, alpha=alpha, beta=beta)
-
-# img = winter(cv.imread('/Users/1lusca/Documents/GitHub/Processamento-Grafico/tgb/assets/images/corgi.jpg'))
-# print(img.shape)
-# cv.imshow('Imagem original', img)
-# cv.waitKey(0)
-# cv.destroyAllWindows()
