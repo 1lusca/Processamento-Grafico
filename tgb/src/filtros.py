@@ -1,7 +1,5 @@
 import cv2 as cv
 
-
-
 # renderiza um unico canal de cor
 # renderizando o canal Blue
 # 0 = blue, 1  = green, red = 2
