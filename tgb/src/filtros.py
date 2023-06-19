@@ -1,4 +1,5 @@
 import cv2 as cv
+import numpy as np
 
 # renderiza um unico canal de cor
 # renderizando o canal Blue
@@ -99,13 +100,13 @@ def canny(img):
 
 # deteccao de borda sobel
 # deteccao de bordas na imagem atraves do gradiente de sobel
-# detectando verticalmente a borda da imagem
-# x = 1 & y = 0 - calcula horizontalmente o gradiente
-# x = 0 & y = 1 - calcula verticalmente o gradiente
+# calcula as derivadas de primeira ordem
 def sobel(img):
-  x = 0
-  y = 1
-  return cv.Sobel(img, cv.CV_64F, x, y)
+  sobelx = cv.Sobel(img, cv.CV_64F, 1, 0, ksize=3)
+  sobely = cv.Sobel(img, cv.CV_64F, 0, 1, ksize=3)
+  magnitude = np.sqrt(sobelx**2 + sobely**2) #calcula magnitude das bordas
+  magnitude = cv.normalize(magnitude, None, 0, 255, cv.NORM_MINMAX, cv.CV_8U) #normaliza a magnitude 255
+  return magnitude
 
 # dilatacao
 # dilata/aumenta o tamanho dos objetos na imagem
