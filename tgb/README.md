@@ -44,7 +44,7 @@ Programa que simula uma cópia do processamento de imagens do Instagram para a c
 ##
 
 ### Tecnologias e Ferramentas 🚀
-<p align="center">
+<p>
     <img src="https://skillicons.dev/icons?i=python"/>
 </p>
 
