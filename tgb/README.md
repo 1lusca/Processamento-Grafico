@@ -1,5 +1,5 @@
 
-![lala](https://1lusca.github.io/assets/img/portfolio/receitsajaponesas.png)
+![lala](https://github.com/1lusca/Processamento-Grafico/blob/main/tgb/assets/images/running.png?raw=true)
 
 ##
 
